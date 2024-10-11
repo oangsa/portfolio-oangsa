@@ -6,7 +6,7 @@ import { ThemeProvider } from './ThemeProvider'
 export function Providers({children}: { children: React.ReactNode }) {
   return (
     <NextUIProvider>
-      <ThemeProvider themes={['light', 'dark-classic', 'tangerine', 'dark-tangerine', 'mint', 'dark-mint']} enableColorScheme defaultTheme="light">
+      <ThemeProvider themes={['light', 'dark-classic', 'tangerine', 'dark-tangerine', 'mint', 'dark-mint']} defaultTheme="tangerine">
         {children}
       </ThemeProvider>
     </NextUIProvider>

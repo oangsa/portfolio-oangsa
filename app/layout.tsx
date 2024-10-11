@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Kanit } from "next/font/google" 
 import "./globals.css";
-import Navbar from "@/components/navbar";
 import {Providers} from "./providers/providers";
+import Navbar from "@/components/navbar";
 
 const kanit = Kanit({ weight:['400'], subsets:["latin", "thai"] })
 

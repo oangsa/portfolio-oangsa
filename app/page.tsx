@@ -1,11 +1,11 @@
+import Navbar from "@/components/navbar";
+import { Button } from "@nextui-org/react";
+
+
 export default function Home() {
   return (
         <>
-          <div>This is a landing page!</div>
-          <div>This is a landing page!</div>
-          <div>This is a landing page!</div>
-          <div>This is a landing page!</div>
-          <div>This is a landing page!</div>
+          <Button> Click Me! </Button>
         </>
   );
 }

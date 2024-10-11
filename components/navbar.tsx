@@ -1,5 +1,14 @@
+'use client'
+
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
+import ThemeToggles from "@/app/providers/ThemeToggles";
+import { usePathname } from "next/navigation";
+
 export default function App() {
+  const pathname = usePathname()
+
+  console.log(pathname == '/aboutme')
+  
   return (
     <Navbar
       maxWidth={'full'}
@@ -25,19 +34,17 @@ export default function App() {
       </NavbarBrand>
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
         <NavbarItem>
-          <Link className="text-dark" href="#">
+          <Link className={pathname == '/projects' ? "text-blue-500 text-bold" : "text-dark"} href="#">
             Projects
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link className="text-dark" href="#" aria-current="page">
+        <NavbarItem className={pathname == '/aboutme' ? "text-blue-500 text-bold" : "text-dark hover: text-sm "}>
+          <Link className="text-dark" href="/aboutme" aria-current="page">
             About Me
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link className="text-dark" href="#">
-            Integrations
-          </Link>
+          <ThemeToggles/>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
