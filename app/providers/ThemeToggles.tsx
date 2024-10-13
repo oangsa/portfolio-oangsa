@@ -5,7 +5,7 @@ import {MoonIcon} from "../../components/Icons/moon";
 import {SunIcon} from "../../components/Icons/sun";
 import { useTheme } from "next-themes";
 
-const ThemeSwitch = (props: any) => {
+const ThemeSwitch = (props: any): JSX.Element => {
   const {
     Component, 
     slots, 

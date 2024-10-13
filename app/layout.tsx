@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { Kanit } from "next/font/google" 
+import { Roboto_Mono } from "next/font/google" 
 import "./globals.css";
 import {Providers} from "./providers/providers";
 import Navbar from "@/components/navbar";
 
-const kanit = Kanit({ weight:['400'], subsets:["latin", "thai"] })
+const kanit = Roboto_Mono({ 
+  subsets:["latin"], 
+  weight: ["100", "200", "300", "400", "500", "600", "700"] 
+})
 
 export const metadata: Metadata = {
   title: "Portfolio App",
