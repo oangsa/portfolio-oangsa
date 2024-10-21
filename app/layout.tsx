@@ -12,6 +12,7 @@ const kanit = Roboto_Mono({
 export const metadata: Metadata = {
   title: "Portfolio App",
   description: "This website is for CPE101 assignment.",
+  
 };
 
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {

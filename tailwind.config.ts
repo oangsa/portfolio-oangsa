@@ -52,6 +52,13 @@ const config: Config = {
             "DEFAULT" : '#00e187',
           }
         },
+      },
+      light: {
+        layout: {},
+        colors: {
+          background: "#f0f0f5",
+          foreground: "#000000",
+        },
       }
     }}
   )],

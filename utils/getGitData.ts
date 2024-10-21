@@ -1,8 +1,9 @@
-import { GitHubData } from "@/interfaces/gitData";
+import { GitHubDataInterface } from "@/interfaces/interfaces";
 import getAllRepos from "./getAllRepos";
 import getRepoByName from "./getReposByName";
+import { cache } from 'react'
 
-export default async function getGitHubData(): Promise<GitHubData> {
+export const getGitHubData = cache(async (): Promise<GitHubDataInterface> => {
 
     const res: Array<any> = await getAllRepos();
 
@@ -19,5 +20,6 @@ export default async function getGitHubData(): Promise<GitHubData> {
 
 
 
-    return {commitsCount: total, reposCount: res.length} as GitHubData
-}
+    return {commitsCount: total, reposCount: res.length} as GitHubDataInterface
+})
+

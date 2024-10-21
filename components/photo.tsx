@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import photo from "../assets/croppedPic.png"
+import photo from "../assets/cropped_image.png"
 
 export default function Photo () {
 

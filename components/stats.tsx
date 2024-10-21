@@ -1,12 +1,11 @@
 'use client'
 
-import { GitHubData } from "@/interfaces/gitData"
-import getGitHubData from "@/utils/getGitData"
+import { getGitHubData } from "@/utils/getGitData"
 import { useState, useCallback, useEffect } from "react"
 import CountUp from 'react-countup'
 
 export default function Stats () : JSX.Element {
-    const [value, setValue] = useState<GitHubData>({commitsCount: 0, reposCount: 0})
+    const [value, setValue] = useState<any>()
 
     const getData = useCallback(async () => {
       await getD()
@@ -24,11 +23,11 @@ export default function Stats () : JSX.Element {
     const stats: Array<{name: string, num: number}> = [
         {
             name: "Total Git Repositories",
-            num: value.reposCount
+            num: value?.reposCount
         },
         {
             name: "Code Commits",
-            num: value.commitsCount
+            num: value?.commitsCount
         }
     ]
     
