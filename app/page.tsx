@@ -12,7 +12,7 @@ export default function Home(): JSX.Element {
           <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
             <div className="text-center xl:text-left order-2 xl:order-none">
               <span className="text-xl">Computer Engineering Student</span>
-              <h1 className="h1 mb-6 primary">Hello, I'm<br /> 
+              <h1 className="h1 mb-6 primary">Hello, I&apos;m<br /> 
                 <span className="text-dark_accent dark:text-accent">Suthang Sukrueangkun</span>
               </h1>
               <p className="max-w-[500px] mb-9">I'm pretty good at coding :)</p>
