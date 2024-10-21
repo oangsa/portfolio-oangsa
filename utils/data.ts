@@ -78,7 +78,7 @@ export const educations: educationInterface = {
       duration: "2021 - 2023"
     },
     {
-      institution: "King Mongkut&apos;s University of Technology Thonburi",
+      institution: "King Mongkut's University of Technology Thonburi",
       degree: "B.Eng. Computer Engineering (International Program)",
       duration: "2024 - ???"
     },
