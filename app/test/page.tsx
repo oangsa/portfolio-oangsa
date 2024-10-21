@@ -1,10 +1,7 @@
 'use client'
 
-import Slider from "react-slick";
-import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import ProjectsCard from "@/components/projectsCard";
 import { ImHtmlFive2 } from "react-icons/im";
 import { IoLogoJavascript } from "react-icons/io";
 import { TbBrandTypescript } from "react-icons/tb";
@@ -13,52 +10,6 @@ import { CIcon } from "../../components/Icons/c"
 // import { ImHtmlFive2 } from "react-icons/im";
 
 export default function Page(): JSX.Element {
-    const settings = {
-      className: "center",
-      centerMode: true,
-      infinite: true,
-      centerPadding: "60px",
-      slidesToShow: 3,
-      speed: 500,
-      dots: true,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 2000,
-      cssEase: "linear"
-    };
-
-    const projects = [
-      {
-        name: "Treasure Hunt Robot",
-        subject: "CPE101",
-        image: "",
-        description: "The robot powered by micro::bit board, with built-in camera, the robot can explore inside the cave without ease!",
-        status: "success"
-      },
-      {
-        name: "Brainrot-Interpreter",
-        subject: "NONE",
-        image: "",
-        description: "Brainrot-Interpreter is a interpreter for brainrot words written in TypeScript. The project mainly aim for study about how computer language work, abstract syntax, and lexer!",
-        status: "in-progess"
-      },
-      {
-        name: "Sandwich Bot",
-        subject: "NONE",
-        image: "",
-        description: "Sandwich bot is a bot for discord have multiple functions such as Play Music and more!. The bot was written in JavaScript.",
-        status: "in-progess"
-      },
-      {
-        name: "TO BE NUMBER ONE WEBSITE",
-        subject: "NONE",
-        image: "",
-        description: "The website is for the TO BE NUMBER ONE club in my old school. The web was built in Next.JS with a power of NextUI and TailwindCSS, and also written in TypeScript. ",
-        status: "in-progess"
-      },
-    ]
-
-
     return (
         <div>
             {/* <Button> Click Me </Button> <br />

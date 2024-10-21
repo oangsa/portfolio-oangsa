@@ -1,7 +1,6 @@
 'use client'
 
 import Slider from "react-slick";
-import { Button, Card, CardBody, CardHeader } from "@nextui-org/react";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ProjectsCard from "@/components/projectsCard";

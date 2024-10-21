@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Attributes, HTMLAttributes, ReactElement, ReactHTMLElement } from 'react';
+import { ReactElement } from 'react';
 import { FaGithub, FaYoutube, FaTwitter, FaFacebook } from 'react-icons/fa'
 
 

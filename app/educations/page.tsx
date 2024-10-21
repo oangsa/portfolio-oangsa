@@ -1,18 +1,19 @@
 "use client"
 
 import { educations, about } from "@/utils/data";
-import { Tabs, Tab, Card, CardBody, ScrollShadow, Divider } from "@nextui-org/react";
+import { Tabs, Tab, ScrollShadow, Divider } from "@nextui-org/react";
 import { useState } from "react";
+import {Key} from '@react-types/shared';
 
 
 export default function Page(): JSX.Element {
-    const [selected, setSelected] = useState("about");
+    const [selected, setSelected] = useState<Key>("about");
 
 
     return (
         <div className="min-h-[80vh] flex items-center justify-center py-12 xl:py-8">
             <div className="container mx-auto">
-                <Tabs size="lg"  selectedKey={selected} onSelectionChange={setSelected} className="flex flex-col xl:flex-row gap-[60px]" isVertical={false} color="success">
+                <Tabs size="lg"  selectedKey={selected} onSelectionChange={setSelected} className="flex flex-col xl:flex-row gap-[60px]" color="success">
                     <Tab key="about" title="About me"/>
                     <Tab key="education" title="Educations"/>
                 </Tabs>

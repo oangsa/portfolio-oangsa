@@ -1,6 +1,6 @@
 'use client'
 
-import { Image, Chip, Card, CardBody, CardHeader, CardFooter, Divider, Link } from "@nextui-org/react";
+import { Image, Chip, Card, CardBody, CardHeader, CardFooter } from "@nextui-org/react";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
