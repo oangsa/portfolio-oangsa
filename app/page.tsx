@@ -15,7 +15,7 @@ export default function Home(): JSX.Element {
               <h1 className="h1 mb-6 primary">Hello, I&apos;m<br /> 
                 <span className="text-dark_accent dark:text-accent">Suthang Sukrueangkun</span>
               </h1>
-              <p className="max-w-[500px] mb-9">I'm pretty good at coding :)</p>
+              <p className="max-w-[500px] mb-9">I&apos;m pretty good at coding :)</p>
               <div className="flex flex-col xl:flex-row items-center gap-8">
                 <div className="mb-8 xl:mb-0">
                   <Socials containerStyle="flex gap-6 justify-items-center" iconStyle="w-9 h-9 rounded-full flex justify-center items-center hover:text-xl dark:hover:text-accent hover:text-dark_accent hover:transition-all duration-500" />
