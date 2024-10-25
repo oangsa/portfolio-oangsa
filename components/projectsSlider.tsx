@@ -1,34 +1,53 @@
 'use client'
 
-import Slider from "react-slick";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 import ProjectsCard from "@/components/projectsCard";
 import { projects } from "@/utils/data";
+import Carousel from "react-multi-carousel";
 
 export default function ProjectsSlider(): JSX.Element {
-    const settings = {
-      className: "center",
-      centerMode: false,
-      infinite: true,
-      slidesToShow: 1,
-      speed: 500,
-      dots: true,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 5000,
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 1,
+            slidesToSlide: 1
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+            slidesToSlide: 1
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1
+        }
     };
-
-
+    
     return (
-        <div className="pb-16 justify-items-center">
-            <Slider {...settings}>
+        <div className="pb-12">
+            <Carousel
+                swipeable={true}
+                draggable={false}
+                showDots={false}
+                responsive={responsive}
+                ssr={true}
+                infinite={true}
+                autoPlay={true}
+                autoPlaySpeed={5000}
+                transitionDuration={500}
+                customTransition="all .5s ease-out"
+                containerClass="w-full"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                itemClass="carousel-item-padding-40-px"
+            >
                 {projects.map((items: any, index: any) => {
                     return (
                         <ProjectsCard key={index} props={items}/>
                     )
                 })}
-            </Slider>
+            </Carousel>
         </div>
-    )
+
+    );
+        
 }

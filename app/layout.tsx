@@ -3,6 +3,7 @@ import { Roboto_Mono } from "next/font/google"
 import "./globals.css";
 import {Providers} from "./providers/providers";
 import Navbar from "@/components/navbar";
+import 'react-multi-carousel/lib/styles.css'
 
 const kanit = Roboto_Mono({ 
   subsets:["latin"], 

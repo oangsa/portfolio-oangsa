@@ -1,6 +1,6 @@
 import { aboutInterface, educationInterface, projectsInterface } from "@/interfaces/interfaces"
 
-export const projects: Array<projectsInterface> = [
+export const projects: projectsInterface[] = [
   {
     name: "Treasure Hunt Robot",
     subject: "CPE101",

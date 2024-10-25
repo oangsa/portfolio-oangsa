@@ -9,7 +9,6 @@ import {Key} from '@react-types/shared';
 export default function Page(): JSX.Element {
     const [selected, setSelected] = useState<Key>("about");
 
-
     return (
         <div className="min-h-[80vh] flex items-center justify-center py-12 xl:py-8">
             <div className="container mx-auto">
@@ -27,9 +26,9 @@ export default function Page(): JSX.Element {
                                 <ul className="grid grid-cols-1 gap-y-6 max-w-[620px] mx-auto xl:mx-0">
                                     {about.infos.map((items, index) => {
                                         return (
-                                            <li key={index} className="flex items-center justify-center xl:justify-start gap-4">
+                                            <li key={index} className="flex items-center justify-start gap-4">
                                                 <span className="dark:text-white/60">{items.fieldName}:</span>
-                                                <span className="text-xl">{items.fieldValue}</span>
+                                                <span className="text-md xl:text-xl md:text-xl">{items.fieldValue}</span>
                                             </li>
                                         )
                                     })}
@@ -38,6 +37,7 @@ export default function Page(): JSX.Element {
                         </div>
                 
                     :
+                        
                         <div className="w-full">
                             <div className="flex flex-col gap-[30px] text-center xl:text-left">
                                 <h3 className="text-4xl font-bold text-dark_accent dark:text-accent">{educations.title}</h3>
