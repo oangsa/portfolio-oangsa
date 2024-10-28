@@ -61,7 +61,7 @@ export default function App(props: any) {
         </NavbarItem>
         <NavbarItem>
           <NextLink href={"/aboutme"} className={pathname == '/aboutme' ? "dark:text-accent font-bold text-dark_accent" : "text-dark hover:text-accent_hover hover:text-xl hover:transition-all duration-200"}  aria-current="page">
-            Educations
+            About me
           </NextLink>
         </NavbarItem>
         <NavbarItem>
