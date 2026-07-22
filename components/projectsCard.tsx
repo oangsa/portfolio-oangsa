@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import Link from "next/link";
+import { FaArrowRight, FaArrowUpRightFromSquare } from "react-icons/fa6";
 import type { projectsInterface } from "@/interfaces/interfaces";
 
 interface ProjectsCardProps {
@@ -11,13 +12,23 @@ export default function ProjectsCard({ project }: ProjectsCardProps): JSX.Elemen
     ? "project-status is-progress"
     : "project-status is-complete";
 
+  const caseStudyHref = project.slug && project.caseStudy
+    ? `/projects/${project.slug}`
+    : undefined;
   const primaryHref = project.links?.[0]?.href;
+  const visibleTools = project.tools?.slice(0, 5);
+  const remainingToolCount = Math.max(
+    0,
+    (project.tools?.length ?? 0) - (visibleTools?.length ?? 0),
+  );
   const projectPreview = project.image ? (
     <Image
       src={project.image}
       alt={`${project.name} project preview`}
       fill
-      sizes="(min-width: 960px) 50vw, 100vw"
+      quality={75}
+      placeholder="blur"
+      sizes="(min-width: 92rem) 45rem, (min-width: 40rem) calc(50vw - 2.5rem), calc(100vw - 2rem)"
       className="project-image"
     />
   ) : (
@@ -29,7 +40,11 @@ export default function ProjectsCard({ project }: ProjectsCardProps): JSX.Elemen
 
   return (
     <article className="project-card">
-      {primaryHref ? (
+      {caseStudyHref ? (
+        <Link className="project-media" href={caseStudyHref} aria-label={`Read the ${project.name} case study`}>
+          {projectPreview}
+        </Link>
+      ) : primaryHref ? (
         <a className="project-media" href={primaryHref} target="_blank" rel="noopener noreferrer" aria-label={`View source for ${project.name}`}>
           {projectPreview}
         </a>
@@ -45,10 +60,18 @@ export default function ProjectsCard({ project }: ProjectsCardProps): JSX.Elemen
           <span className={statusClass}>{project.status}</span>
         </div>
         <p className="project-description">{project.description}</p>
-        {project.tools ? (
-          <p className="project-tools"><span>Built with</span>{project.tools.join(", ")}</p>
+        {visibleTools?.length ? (
+          <p className="project-tools">
+            <span>Built with</span>
+            {visibleTools.join(", ")}{remainingToolCount ? `, +${remainingToolCount} more` : ""}
+          </p>
         ) : null}
         <div className="project-action">
+          {caseStudyHref ? (
+            <Link href={caseStudyHref} className="text-link">
+              Read case study <FaArrowRight aria-hidden="true" />
+            </Link>
+          ) : null}
           {project.links ? (
             project.links.map((link) => (
               <a

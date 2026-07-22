@@ -10,5 +10,17 @@
     "footer": "Ft5 Statement",
     "enrichment": "existing portrait and project imagery",
     "brief": "Suthang portfolio · recruiter-focused multi-page redesign"
+  },
+  {
+    "date": "2026-07-22",
+    "scope": "project case studies",
+    "macrostructure": "Long Document",
+    "theme": "custom",
+    "theme_axes": "light / geometric-sans / cool",
+    "vibe": "soft technical, recruiter-readable",
+    "nav": "N5 Floating Pill (shared)",
+    "footer": "Ft5 Statement (shared)",
+    "enrichment": "real portfolio imagery plus concise source-reviewed project copy; no invented screenshots or usage metrics",
+    "brief": "All portfolio projects · indexable recruiter-focused case studies"
   }
 ]

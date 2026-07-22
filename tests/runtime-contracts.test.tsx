@@ -11,6 +11,9 @@ const themeState = vi.hoisted((): { resolvedTheme: string | undefined } => ({
 
 vi.mock("next/navigation", () => ({
   usePathname: () => "/",
+  notFound: () => {
+    throw new Error("Unexpected notFound call");
+  },
 }));
 
 vi.mock("next-themes", () => ({
@@ -30,6 +33,8 @@ vi.mock("next/link", async () => {
 });
 
 import Navbar from "@/components/navbar";
+import ProjectPage from "@/app/projects/[slug]/page";
+import { getProjectBySlug } from "@/utils/data";
 
 describe("runtime rendering contracts", () => {
   it("renders identical initial Navbar markup before and after the browser resolves the theme", () => {
@@ -89,5 +94,26 @@ describe("runtime rendering contracts", () => {
     expect(statsComponent).toContain("Authored commits");
     expect(statsComponent).toContain("function CountUp");
     expect(statsComponent).toContain("useReducedMotion");
+  });
+
+  it("publishes concise repository-backed architecture without the removed sections", async () => {
+    const project = getProjectBySlug("codetice");
+
+    if (!project) {
+      throw new Error("Codetice test data is required");
+    }
+    const architecture = project.caseStudy.architecture?.[0];
+
+    if (!architecture) {
+      throw new Error("Codetice architecture is required");
+    }
+
+    const page = await ProjectPage({ params: Promise.resolve({ slug: project.slug }) });
+    const markup = renderToString(page);
+
+    expect(markup).toContain("Architecture");
+    expect(markup).toContain(architecture.detail);
+    expect(markup).not.toContain("Key decisions");
+    expect(markup).not.toContain("Challenges");
   });
 });

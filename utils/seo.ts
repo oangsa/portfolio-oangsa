@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CaseStudyProject } from "@/utils/data";
 
 export const siteConfig = {
   url: "https://me.oangsa.com",
@@ -18,6 +19,11 @@ export const siteConfig = {
 export function absoluteUrl(path = "/"): string {
   return new URL(path, `${siteConfig.url}/`).toString();
 }
+
+export const pageLastModified = {
+  home: "2026-07-22",
+  profile: "2026-07-22",
+} as const;
 
 const personEntity = {
   "@type": "Person",
@@ -142,3 +148,84 @@ export const profileMetadata: Metadata = {
     images: [socialImage.url],
   },
 };
+
+export function projectMetadata(project: CaseStudyProject): Metadata {
+  const path = `/projects/${project.slug}`;
+  const title = `${project.name} Case Study`;
+
+  return {
+    title,
+    description: project.description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "article",
+      locale: "en_US",
+      url: path,
+      siteName: siteConfig.name,
+      title: `${title} | ${siteConfig.name}`,
+      description: project.description,
+      modifiedTime: project.caseStudy.lastModified,
+      authors: [absoluteUrl("/profile")],
+      images: [socialImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${siteConfig.name}`,
+      description: project.description,
+      images: [socialImage.url],
+    },
+  };
+}
+
+export function projectJsonLd(project: CaseStudyProject) {
+  const projectUrl = absoluteUrl(`/projects/${project.slug}`);
+  const pageEntityId = `${projectUrl}#webpage`;
+  const schemaType = project.caseStudy.schemaType ?? "SoftwareSourceCode";
+  const projectEntityId = `${projectUrl}#${schemaType === "CreativeWork" ? "creative-work" : "software-source-code"}`;
+  const repositoryUrls = project.links?.map((link) => link.href);
+  const collaborators = project.caseStudy.contributors
+    ?.filter((name) => name !== siteConfig.name)
+    .map((name) => ({ "@type": "Person", name }));
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": pageEntityId,
+        url: projectUrl,
+        name: `${project.name} Case Study | ${siteConfig.name}`,
+        description: project.description,
+        inLanguage: "en",
+        dateModified: project.caseStudy.lastModified,
+        author: {
+          "@id": `${siteConfig.url}/#person`,
+        },
+        isPartOf: {
+          "@id": `${siteConfig.url}/#website`,
+        },
+        about: {
+          "@id": projectEntityId,
+        },
+        mainEntity: {
+          "@id": projectEntityId,
+        },
+      },
+      {
+        "@type": schemaType,
+        "@id": projectEntityId,
+        name: project.name,
+        description: project.description,
+        ...(repositoryUrls?.length ? { codeRepository: repositoryUrls } : {}),
+        ...(project.tools?.length ? { keywords: project.tools } : {}),
+        author: {
+          "@id": `${siteConfig.url}/#person`,
+        },
+        ...(collaborators?.length ? { contributor: collaborators } : {}),
+        mainEntityOfPage: {
+          "@id": pageEntityId,
+        },
+      },
+    ],
+  } as const;
+}

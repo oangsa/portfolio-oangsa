@@ -1,6 +1,7 @@
 import type { StaticImageData } from "next/image";
 
 export interface projectsInterface {
+    slug?: string,
     name: string,
     subject: string,
     image?: StaticImageData,
@@ -11,6 +12,21 @@ export interface projectsInterface {
         label: string,
         href: string,
     }>,
+    caseStudy?: {
+        role: string,
+        schemaType?: "SoftwareSourceCode" | "CreativeWork",
+        sourceLabel?: string,
+        sourceUpdated: string,
+        lastModified: string,
+        imageCaption?: string,
+        problem: string,
+        outcome: string,
+        architecture?: Array<{
+            label: string,
+            detail: string,
+        }>,
+        contributors?: string[],
+    },
 }
 
 export interface baseInterface {

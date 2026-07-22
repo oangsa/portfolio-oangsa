@@ -990,3 +990,295 @@
     transform: none !important;
   }
 }
+
+/* Hallmark · genre: modern-minimal · macrostructure: Long Document · theme: locked custom · enrichment: real project imagery and concise project copy · nav: N5 · footer: Ft5
+ * S4 Inline heads: weight=700, spacing=compact · C3 Typographic links: underline=solid, hover=colour shift, arrow=↗ · contrast: pass (40–41)
+ * slop: pass (42–45) · honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49) · icons: pass (30) · mobile: pass (34, 49, 50–57)
+ */
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5 */
+.project-page {
+  padding-bottom: var(--space-xl);
+}
+
+.project-case-study {
+  width: min(100%, 72rem);
+  margin-inline: auto;
+}
+
+.project-breadcrumb {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-block: var(--space-lg) var(--space-sm);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.project-breadcrumb a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: var(--color-ink-2);
+  font-weight: 650;
+  white-space: nowrap;
+  transition: color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+
+.project-breadcrumb a svg {
+  width: 0.8em;
+  height: 0.8em;
+}
+
+.project-breadcrumb > span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-case-header {
+  display: grid;
+  gap: var(--space-xl);
+  padding-block: var(--space-xl);
+}
+
+.project-case-title {
+  min-width: 0;
+  display: grid;
+  justify-items: start;
+  gap: var(--space-md);
+  max-width: var(--measure);
+}
+
+.project-case-title h1 {
+  max-width: 14ch;
+  font-size: var(--text-display-s);
+  line-height: 1.02;
+}
+
+.project-case-lede {
+  max-width: 58ch;
+  color: var(--color-ink-2);
+  font-size: var(--text-md);
+  line-height: 1.55;
+}
+
+.project-case-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-md);
+}
+
+.project-case-facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-lg);
+  margin: 0;
+  padding-block: var(--space-md);
+  border-block: var(--rule-hair) solid var(--color-rule);
+}
+
+.project-case-facts div {
+  min-width: 0;
+  display: grid;
+  gap: var(--space-3xs);
+}
+
+.project-case-facts dt {
+  color: var(--color-muted);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.project-case-facts dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--color-ink);
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.project-case-media {
+  width: min(100%, var(--measure));
+  display: grid;
+  gap: var(--space-xs);
+  margin: 0;
+}
+
+.project-case-media-frame {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 16 / 10;
+  overflow: clip;
+  border-radius: var(--radius-card);
+  background: var(--color-paper-2);
+}
+
+.project-case-media img {
+  object-fit: cover;
+}
+
+.project-case-media-treasure-hunt-robot img {
+  object-position: center 56%;
+}
+
+.project-case-media figcaption {
+  color: var(--color-muted);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.project-document {
+  width: min(100%, var(--measure));
+  display: grid;
+  gap: var(--space-xl);
+  padding-block: var(--space-xl);
+}
+
+.project-case-header + .project-document {
+  padding-block-start: 0;
+}
+
+.project-prose-section {
+  min-width: 0;
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.project-prose-section h2 {
+  color: var(--color-ink);
+  font-size: var(--text-md);
+  line-height: 1.2;
+}
+
+.project-prose-section > p,
+.project-document-close {
+  color: var(--color-ink-2);
+}
+
+.project-prose-section > p,
+.project-document-close {
+  line-height: 1.7;
+}
+
+.project-detail-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.project-detail-list > div {
+  display: grid;
+  gap: var(--space-2xs);
+  padding-block: var(--space-md);
+  border-block-start: var(--rule-hair) solid var(--color-rule);
+}
+
+.project-detail-list > div:last-child {
+  border-block-end: var(--rule-hair) solid var(--color-rule);
+}
+
+.project-detail-list dt {
+  color: var(--color-ink);
+  font-size: var(--text-base);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.project-detail-list dd {
+  margin: 0;
+  color: var(--color-ink-2);
+  line-height: 1.7;
+}
+
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin: 0;
+  padding: 0;
+  color: var(--color-ink-2);
+  list-style: none;
+}
+
+.project-stack li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.project-stack li:not(:last-child)::after {
+  color: var(--color-muted);
+  content: "·";
+}
+
+.project-document-close {
+  padding-block-start: var(--space-sm);
+}
+
+.project-document-close a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: var(--color-ink);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: var(--space-3xs);
+  white-space: nowrap;
+}
+
+.project-document-close svg {
+  width: 0.8em;
+  height: 0.8em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-breadcrumb a:hover,
+  .project-document-close a:hover {
+    color: var(--color-ink);
+    transform: translateY(-1px);
+  }
+}
+
+.project-breadcrumb a:active,
+.project-document-close a:active {
+  transform: translateY(1px);
+}
+
+.project-breadcrumb a[aria-disabled="true"],
+.project-document-close a[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@media (min-width: 40rem) {
+  .project-case-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 60rem) {
+  .project-case-header {
+    padding-block: var(--space-2xl) var(--space-xl);
+  }
+}
+
+@media (pointer: coarse) {
+  .project-breadcrumb a,
+  .project-document-close a {
+    min-height: 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-breadcrumb a,
+  .project-document-close a {
+    transform: none !important;
+  }
+}

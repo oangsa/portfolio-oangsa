@@ -10,7 +10,8 @@ Modern-minimal with a soft, approachable register. The interface is designed for
 
 - Marketing pages: **Portfolio Grid**, with an H2 Split Diptych introduction and image-led project index.
 - App pages: not currently applicable; use **Workbench** if an interactive project area is added.
-- Content pages: **Split Studio**, pairing concise explanation with structured proof or chronology.
+- Profile content: **Split Studio**, pairing concise explanation with structured proof or chronology.
+- Project case studies: **Long Document**, using recruiter-readable overview copy, real project imagery where available, and a concise technology summary without invented usage metrics.
 
 ## Theme
 
@@ -72,6 +73,7 @@ The portable 4-point named scale lives in `tokens.css`. Pages use `var(--space-*
 ## What pages MAY differ on
 
 - The home page may prioritize project imagery; the About page may prioritize text.
+- Project case studies may use a narrower reading measure and project-specific imagery where verified assets are available.
 - Grid proportions may vary within the declared page family.
 - Only the home portrait receives an entrance animation.
 
