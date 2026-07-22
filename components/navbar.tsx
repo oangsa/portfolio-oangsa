@@ -1,127 +1,97 @@
 'use client'
 
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, useSwitch, VisuallyHidden} from "@nextui-org/react";
-import { usePathname } from "next/navigation";
 import NextLink from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
+import { useState } from "react";
 import { MoonIcon } from "./Icons/moon";
 import { SunIcon } from "./Icons/sun";
+import { navigation } from "@/utils/site";
 
-export default function App(props: any) {
+export default function Navbar(): JSX.Element {
+  const pathname = usePathname();
+  const { resolvedTheme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
-  const pathname = usePathname()
 
-  const pathMap: Record<string, string> = {
-    "/aboutme": "About Me",
-    "/projects": "Projects",
-    "/": "Home",
-    "/educations": "Educations",
-  }
+  const currentPage = navigation.find(({ href }) => href === pathname)?.label ?? "Portfolio";
+  const isDark = resolvedTheme === "dark";
+  const nextTheme = isDark ? "light" : "dark";
 
-  const {
-    Component, 
-    slots, 
-    isSelected, 
-    getBaseProps, 
-    getInputProps, 
-    getWrapperProps
-  } = useSwitch(props);
-
-  const { theme, setTheme } = useTheme()
+  const themeToggle = (
+    <button
+      type="button"
+      onClick={() => setTheme(nextTheme)}
+      className="flex h-10 w-10 items-center justify-center rounded-lg bg-black/5 transition-colors hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/15"
+      aria-label={resolvedTheme ? `Switch to ${nextTheme} theme` : "Toggle color theme"}
+    >
+      {isDark ? <SunIcon /> : <MoonIcon />}
+    </button>
+  );
 
   return (
-    <Navbar
-      maxWidth={'full'}
-      classNames={{
-        item: [
-          "flex",
-          "relative",
-          "h-full",
-          "items-center",
-        ],
-      }}
-      onMenuOpenChange={setIsMenuOpen}
-    >
-      <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
-        <NavbarBrand>
-          <p className="font-bold text-2xl dark:text-accent text-bold text-dark_accent">{pathMap[pathname]}</p>
-        </NavbarBrand>
-      </NavbarContent>
-      <NavbarContent className="hidden sm:flex gap-4" justify="end">
-        <NavbarItem>
-          <NextLink href={"/"} className={pathname == '/' ? "dark:text-accent font-bold  text-dark_accent" : "text-dark hover:text-accent_hover hover:text-xl hover:transition-all duration-200"}  aria-current="page">
-            Home
-          </NextLink>
-        </NavbarItem>
-        <NavbarItem>
-          <NextLink href={"/aboutme"} className={pathname == '/aboutme' ? "dark:text-accent font-bold text-dark_accent" : "text-dark hover:text-accent_hover hover:text-xl hover:transition-all duration-200"}  aria-current="page">
-            About me
-          </NextLink>
-        </NavbarItem>
-        <NavbarItem>
-          <div className="flex flex-col gap-2">
-            <Component {...getBaseProps()}>
-                <VisuallyHidden>
-                  <input {...getInputProps()} />
-                </VisuallyHidden>
-                <div
-                  {...getWrapperProps()}
-                  className={slots.wrapper({
-                    class: [
-                      "w-8 h-8",
-                      "flex items-center justify-center",
-                      "rounded-lg bg-default-100 hover:bg-default-200",
-                    ],
-                  })}
+    <header className="sticky top-0 z-50 border-b border-black/5 bg-[#f0f0f5]/90 backdrop-blur dark:border-white/10 dark:bg-[#1c1c22]/90">
+      <div className="container mx-auto flex min-h-16 items-center justify-between py-3">
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            className="flex h-10 w-10 items-center justify-center rounded-lg sm:hidden"
+            aria-controls="mobile-navigation"
+            aria-expanded={isMenuOpen}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            <span aria-hidden="true" className="text-2xl leading-none">
+              {isMenuOpen ? "×" : "☰"}
+            </span>
+          </button>
+          <p className="text-2xl font-bold text-dark_accent dark:text-accent">{currentPage}</p>
+        </div>
+
+        <nav aria-label="Primary navigation" className="hidden items-center gap-6 sm:flex">
+          {navigation.map(({ href, label }) => {
+            const isCurrent = pathname === href;
+
+            return (
+              <NextLink
+                key={href}
+                href={href}
+                aria-current={isCurrent ? "page" : undefined}
+                className={isCurrent
+                  ? "font-bold text-dark_accent dark:text-accent"
+                  : "transition-colors hover:text-dark_accent dark:hover:text-accent"}
+              >
+                {label}
+              </NextLink>
+            );
+          })}
+          {themeToggle}
+        </nav>
+      </div>
+
+      {isMenuOpen && (
+        <nav id="mobile-navigation" aria-label="Mobile navigation" className="container mx-auto pb-4 sm:hidden">
+          <div className="flex flex-col gap-2 rounded-xl border border-black/10 bg-white/60 p-3 dark:border-white/10 dark:bg-white/5">
+            {navigation.map(({ href, label }) => {
+              const isCurrent = pathname === href;
+
+              return (
+                <NextLink
+                  key={href}
+                  href={href}
+                  onClick={() => setIsMenuOpen(false)}
+                  aria-current={isCurrent ? "page" : undefined}
+                  className={isCurrent
+                    ? "rounded-lg bg-black/5 px-3 py-2 font-bold text-dark_accent dark:bg-white/10 dark:text-accent"
+                    : "rounded-lg px-3 py-2 transition-colors hover:bg-black/5 dark:hover:bg-white/10"}
                 >
-                  {isSelected ? <SunIcon/> : <MoonIcon/>}
-                </div>
-                {setTheme(isSelected ? 'light' : 'dark')}
-            </Component>
+                  {label}
+                </NextLink>
+              );
+            })}
+            <div className="px-1 pt-1">{themeToggle}</div>
           </div>
-        </NavbarItem>
-        {/* Menu For Smaller Phone */}
-        <NavbarMenu>
-          <NavbarMenuItem>
-            <NextLink href={"/"} className={pathname == '/' ? "dark:text-accent font-bold  text-dark_accent" : "text-dark hover:text-accent_hover hover:text-xl hover:transition-all duration-200"}  aria-current="page">
-              Home
-            </NextLink>
-          </NavbarMenuItem>
-          <NavbarMenuItem >
-            <NextLink href={"/educations"} className={pathname == '/educations' ? "dark:text-accent font-bold text-dark_accent" : "text-dark hover:text-accent_hover hover:text-xl hover:transition-all duration-200"}  aria-current="page">
-              Educations
-            </NextLink>
-          </NavbarMenuItem>
-          <NavbarMenuItem >
-            <div className="flex flex-col gap-2">
-              <Component {...getBaseProps()}>
-                <VisuallyHidden>
-                  <input {...getInputProps()} />
-                </VisuallyHidden>
-                <div
-                  {...getWrapperProps()}
-                  className={slots.wrapper({
-                    class: [
-                      "w-8 h-8",
-                      "flex items-center justify-center",
-                      "rounded-lg bg-default-100 hover:bg-default-200",
-                    ],
-                  })}
-                >
-                  {isSelected ? <SunIcon/> : <MoonIcon/>}
-                </div>
-                {setTheme(isSelected ? 'light' : 'dark')}
-              </Component>
-            </div>
-          </NavbarMenuItem>
-        </NavbarMenu>
-      </NavbarContent>
-    </Navbar>
+        </nav>
+      )}
+    </header>
   );
 }

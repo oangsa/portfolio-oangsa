@@ -1,23 +1,37 @@
-import Link from 'next/link';
 import { ReactElement } from 'react';
-import { FaGithub, FaYoutube, FaTwitter, FaFacebook } from 'react-icons/fa'
+import { FaEnvelope, FaFacebook, FaGithub } from 'react-icons/fa'
+import { socialLinks } from '@/utils/site';
 
 
-export default function Socials ({containerStyle, iconStyle}: any): JSX.Element {
+interface SocialsProps {
+    containerStyle?: string;
+    iconStyle?: string;
+}
 
-    const socials: Array<{icon: ReactElement, path: string}> = [
-        {icon: <FaGithub/>, path: "https://github.com/oangsa"},
-        {icon: <FaYoutube/>, path: "https://youtu.be/dQw4w9WgXcQ?si=JkbSb2gD1icLy8vG"},
-        {icon: <FaTwitter/>, path: "https://youtu.be/dQw4w9WgXcQ?si=JkbSb2gD1icLy8vG"},
-        {icon: <FaFacebook/>, path: "https://www.facebook.com/suthang.sukrueangkun"},
-    ]
+const icons: Record<(typeof socialLinks)[number]["label"], ReactElement> = {
+    GitHub: <FaGithub />,
+    Facebook: <FaFacebook />,
+    Email: <FaEnvelope />,
+};
+
+export default function Socials ({containerStyle, iconStyle}: SocialsProps): JSX.Element {
 
     return (
         <div className={containerStyle}>
-            {socials.map((item, index) => {
-                return <Link key={index} href={item.path} className={iconStyle}>
-                    {item.icon}
-                </Link>
+            {socialLinks.map((item) => {
+                const isExternal = item.href.startsWith("http");
+
+                return <a
+                    key={item.label}
+                    href={item.href}
+                    className={iconStyle}
+                    aria-label={item.label}
+                    title={item.label}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                >
+                    {icons[item.label]}
+                </a>
             })}
         </div>
     );

@@ -1,75 +1,38 @@
-"use client"
+import { about, educations } from "@/utils/data";
 
-import { educations, about } from "@/utils/data";
-import { Tabs, Tab, ScrollShadow, Divider } from "@nextui-org/react";
-import { useState } from "react";
-import {Key} from '@react-types/shared';
+export default function AboutPage(): JSX.Element {
+  return (
+    <main className="container mx-auto py-12 xl:py-16">
+      <section aria-labelledby="about-heading" className="max-w-3xl">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-dark_accent dark:text-accent">About me</p>
+        <h1 id="about-heading" className="text-4xl font-bold xl:text-5xl">{about.title}</h1>
+        <p className="mt-6 max-w-2xl leading-7 text-black/70 dark:text-white/70">{about.description}</p>
 
-
-export default function Page(): JSX.Element {
-    const [selected, setSelected] = useState<Key>("about");
-
-    return (
-        <div className="min-h-[80vh] flex items-center justify-center py-12 xl:py-8">
-            <div className="container mx-auto">
-                <Tabs size="lg"  selectedKey={selected} onSelectionChange={setSelected} className="flex flex-col xl:flex-row gap-[60px]" color="success">
-                    <Tab key="about" title="About me"/>
-                    <Tab key="education" title="Educations"/>
-                </Tabs>
-                <div className="pt-12 min-h-[70vh] w-full">
-                    {selected == "about" ? 
-                        <div className="w-full text-center xl:text-left">
-                            <div className="flex flex-col gap-[30px]">
-                                <h3 className="text-4xl font-bold text-dark_accent dark:text-accent">{about.title}</h3>
-                                <p className="max-w-[600px] dark:text-white/60 mx-auto xl:mx-0">{about.description}</p>
-                                <Divider/>
-                                <ul className="grid grid-cols-1 gap-y-6 max-w-[620px] mx-auto xl:mx-0">
-                                    {about.infos.map((items, index) => {
-                                        return (
-                                            <li key={index} className="flex items-center justify-start gap-4">
-                                                <span className="dark:text-white/60">{items.fieldName}:</span>
-                                                <span className="text-md xl:text-xl md:text-xl">{items.fieldValue}</span>
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-                            </div>
-                        </div>
-                
-                    :
-                        
-                        <div className="w-full">
-                            <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                                <h3 className="text-4xl font-bold text-dark_accent dark:text-accent">{educations.title}</h3>
-                                <p className="max-w-[600px] dark:text-white/60 mx-auto xl:mx-0">
-                                    {educations.description}
-                                </p>
-                                <Divider/>
-                                <ScrollShadow className="h-[400px]">
-                                    <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-                                        {educations.infos.map((items, index) => {
-                                            return (
-                                                <li
-                                                    key={index}
-                                                    className="dark:bg-[#232329] bg-[#80808d] h-[284px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-12"
-                                                >
-                                                    <span className="text-accent font-bold">{items.duration}</span>
-                                                    <h3 className="text-xl max-w-[400px] min-h-[60px] text-center lg:text-left">{items.degree}</h3>
-                                                    <div className="flex items-center gap-3">
-                                                        <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
-                                                        <p className="dark:text-white/60">{items.institution}</p>
-                                                    </div>
-                                                </li>
-                                            )
-                                        })}
-                                    </ul>
-                                </ScrollShadow>
-                            </div>
-                        </div>
-                
-                    }
-                </div>
+        <dl className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/10 sm:grid-cols-2 dark:border-white/10 dark:bg-white/10">
+          {about.infos.map((item) => (
+            <div key={item.fieldName} className="bg-[#f0f0f5] p-5 dark:bg-[#232329]">
+              <dt className="text-sm text-black/55 dark:text-white/55">{item.fieldName}</dt>
+              <dd className="mt-1 break-words font-medium">{item.fieldValue}</dd>
             </div>
-        </div>
-    )
+          ))}
+        </dl>
+      </section>
+
+      <section aria-labelledby="education-heading" className="mt-20">
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-dark_accent dark:text-accent">Education</p>
+        <h2 id="education-heading" className="text-4xl font-bold">{educations.title}</h2>
+        <p className="mt-4 max-w-2xl leading-7 text-black/70 dark:text-white/70">{educations.description}</p>
+
+        <ol className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
+          {educations.infos.map((item) => (
+            <li key={`${item.institution}-${item.duration}`} className="rounded-2xl border border-black/10 bg-white/60 p-6 dark:border-white/10 dark:bg-white/5">
+              <p className="font-bold text-dark_accent dark:text-accent">{item.duration}</p>
+              <h3 className="mt-4 text-xl font-semibold">{item.degree}</h3>
+              <p className="mt-3 text-sm leading-6 text-black/65 dark:text-white/65">{item.institution}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </main>
+  );
 }

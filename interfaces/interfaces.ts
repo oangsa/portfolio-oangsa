@@ -1,14 +1,12 @@
-export interface GitHubDataInterface {
-    reposCount: number,
-    commitsCount: number
-}
+import type { StaticImageData } from "next/image";
 
 export interface projectsInterface {
     name: string,
     subject: string,
-    image: string,
+    image: StaticImageData,
     description: string,
-    status: string
+    status: "Completed" | "In progress",
+    href?: string,
 }
 
 export interface baseInterface {

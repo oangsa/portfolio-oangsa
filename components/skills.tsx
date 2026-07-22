@@ -8,25 +8,30 @@ import { TbBrandPrisma } from "react-icons/tb";
 import { TbBrandMongodb } from "react-icons/tb";
 import { IoLogoPython } from "react-icons/io";
 
-export default function Skills ({containerStyle, iconStyle}: any): JSX.Element {
+interface SkillsProps {
+    containerStyle?: string;
+    iconStyle?: string;
+}
 
-    const socials: Array<{icon: ReactElement, name: string}> = [
-        {icon: <ImHtmlFive2 size={'lg'}/>, name: "HTML"},
-        {icon: <IoLogoJavascript size={'lg'}/>, name: "JavaScript"},
-        {icon: <TbBrandTypescript size={'lg'}/>, name: "TypeScript"},
-        {icon: <IoLogoPython size={'lg'}/>, name: "Python"},
-        {icon: <IoLogoNodejs size={'lg'}/>, name: "NodeJS"},
-        {icon: <TbBrandPrisma size={'lg'}/>, name: "Next.JS"},
-        {icon: <TbBrandNextjs size={'lg'}/>, name: "Prisma"},
-        {icon: <TbBrandMongodb size={'lg'}/>, name: "MongoDB"}
+export default function Skills ({containerStyle, iconStyle}: SkillsProps): JSX.Element {
+
+    const skills: Array<{icon: ReactElement, name: string}> = [
+        {icon: <ImHtmlFive2 size="1.25rem"/>, name: "HTML"},
+        {icon: <IoLogoJavascript size="1.25rem"/>, name: "JavaScript"},
+        {icon: <TbBrandTypescript size="1.25rem"/>, name: "TypeScript"},
+        {icon: <IoLogoPython size="1.25rem"/>, name: "Python"},
+        {icon: <IoLogoNodejs size="1.25rem"/>, name: "Node.js"},
+        {icon: <TbBrandNextjs size="1.25rem"/>, name: "Next.js"},
+        {icon: <TbBrandPrisma size="1.25rem"/>, name: "Prisma"},
+        {icon: <TbBrandMongodb size="1.25rem"/>, name: "MongoDB"}
     ]
 
     return (
         <div className={containerStyle}>
-            {socials.map((item, index) => {
+            {skills.map((item) => {
                 return (
-                <div key={index} className="hover:dark:text-accent hover:text-dark_accent hover:text-xl flex place-items-center gap-3 transition-all">
-                    <div key={index} className={iconStyle}>
+                <div key={item.name} className="hover:dark:text-accent hover:text-dark_accent hover:text-xl flex place-items-center gap-3 transition-all">
+                    <div className={iconStyle} aria-hidden="true">
                         {item.icon}
                     </div>
                     {item.name}

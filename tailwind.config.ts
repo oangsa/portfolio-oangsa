@@ -1,4 +1,3 @@
-import {nextui} from '@nextui-org/theme';
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -6,7 +5,6 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     container: {
@@ -38,29 +36,6 @@ const config: Config = {
     }
   },
   darkMode: "class",
-  plugins: [nextui(
-    {themes: {
-      dark: {
-        layout: {},
-        colors: {
-          background: "#1c1c22",
-          foreground: "#ffffff",
-          primary: {
-            "DEFAULT" : "#00ff99",
-          },
-          focus: {
-            "DEFAULT" : '#00e187',
-          }
-        },
-      },
-      light: {
-        layout: {},
-        colors: {
-          background: "#f0f0f5",
-          foreground: "#000000",
-        },
-      }
-    }}
-  )],
+  plugins: [],
 };
 export default config;

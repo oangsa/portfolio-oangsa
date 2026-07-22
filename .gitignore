@@ -36,10 +36,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-credencials
-
-app/skills
-
-app/projects
-
-app/tests
+credentials

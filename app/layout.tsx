@@ -1,25 +1,23 @@
 import type { Metadata } from "next";
-import { Roboto_Mono } from "next/font/google" 
+import localFont from "next/font/local";
 import "./globals.css";
 import {Providers} from "./providers/providers";
 import Navbar from "@/components/navbar";
-import 'react-multi-carousel/lib/styles.css'
 
-const kanit = Roboto_Mono({ 
-  subsets:["latin"], 
-  weight: ["100", "200", "300", "400", "500", "600", "700"] 
-})
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Portfolio App",
-  description: "This website is for CPE101 assignment.",
-  
+  title: "Suthang Sukrueangkun — Computer Engineering Student",
+  description: "Portfolio of Suthang Sukrueangkun, a computer engineering student building software, embedded systems, and web projects.",
 };
 
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
   return (
-    <html lang="en">
-      <body className={`${kanit.className}`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={geistMono.className}>
         <Providers>
           <Navbar  />
           {children}

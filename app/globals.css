@@ -3,7 +3,19 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-[#f0f0f5] text-black transition-colors duration-200 dark:bg-[#1c1c22] dark:text-white;
+  }
+
   .h1 {
     @apply text-[48px] xl:text-[65px] leading-[1.1] font-semibold;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-4 outline-dark_accent dark:outline-accent;
   }
 }
