@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import photo from "../assets/cropped_image.png";
+import photo from "../assets/me_bg.png";
 
 export default function Photo(): JSX.Element {
   const reduceMotion = useReducedMotion();
