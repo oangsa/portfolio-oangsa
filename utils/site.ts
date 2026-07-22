@@ -1,6 +1,6 @@
 export const navigation = [
   { label: "Home", href: "/" },
-  { label: "About me", href: "/aboutme" },
+  { label: "Profile", href: "/profile" },
 ] as const;
 
 export const socialLinks = [

@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
@@ -11,6 +12,7 @@ import { navigation } from "@/utils/site";
 export default function Navbar(): JSX.Element {
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
+  const reduceMotion = useReducedMotion();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const isDark = resolvedTheme === "dark";
@@ -34,7 +36,19 @@ export default function Navbar(): JSX.Element {
                 aria-current={isCurrent ? "page" : undefined}
                 className="nav-link"
               >
-                {label}
+                {isCurrent ? (
+                  <motion.span
+                    layoutId="nav-active-indicator"
+                    className="nav-active-indicator"
+                    initial={false}
+                    transition={{
+                      duration: reduceMotion ? 0 : 0.25,
+                      ease: [0.25, 1, 0.5, 1],
+                    }}
+                    aria-hidden="true"
+                  />
+                ) : null}
+                <span className="nav-link-label">{label}</span>
               </NextLink>
             );
           })}

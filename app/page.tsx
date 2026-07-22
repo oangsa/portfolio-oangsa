@@ -2,6 +2,7 @@ import Photo from "@/components/photo";
 import ProjectsGrid from "@/components/projectsGrid";
 import Skills from "@/components/skills";
 import Socials from "@/components/socials";
+import Stats from "@/components/stats";
 
 export default function Home(): JSX.Element {
   return (
@@ -18,6 +19,8 @@ export default function Home(): JSX.Element {
         </div>
         <Photo />
       </section>
+
+      <Stats />
 
       <section className="skills-section shell" aria-labelledby="skills-heading">
         <div className="section-heading compact-heading">

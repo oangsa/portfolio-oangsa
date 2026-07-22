@@ -77,6 +77,16 @@
   }
 }
 
+.visually-hidden {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .shell {
   width: min(100%, var(--page-width));
   margin-inline: auto;
@@ -87,6 +97,9 @@
   padding-top: calc(var(--space-2xl) + var(--space-md));
 }
 
+/* Hallmark · component: route selector · genre: modern-minimal · theme: locked custom
+ * states: default · hover · focus · active · disabled · current
+ */
 .site-header {
   position: fixed;
   inset: var(--space-sm) 0 auto;
@@ -109,9 +122,8 @@
   border-radius: var(--radius-pill);
   background: var(--color-nav-surface);
   color: var(--color-ink);
-  box-shadow: inset 0 var(--rule-hair) 0 var(--color-nav-highlight), var(--shadow-card);
-  -webkit-backdrop-filter: blur(var(--space-md)) saturate(150%);
-  backdrop-filter: blur(var(--space-md)) saturate(150%);
+  -webkit-backdrop-filter: blur(var(--space-md));
+  backdrop-filter: blur(var(--space-md));
   pointer-events: auto;
 }
 
@@ -158,20 +170,40 @@
 
 .nav-link {
   min-height: 44px;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  isolation: isolate;
   border-radius: var(--radius-pill);
   padding-inline: var(--space-sm);
   color: var(--color-ink-2);
   font-size: var(--text-sm);
   font-weight: 600;
   line-height: 1;
-  transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+  transition: transform var(--dur-micro) var(--ease-out);
+}
+
+.nav-active-indicator {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.nav-active-indicator {
+  background: var(--color-nav-selection);
+  -webkit-backdrop-filter: blur(var(--space-sm));
+  backdrop-filter: blur(var(--space-sm));
+}
+
+.nav-link-label {
+  position: relative;
+  z-index: 1;
 }
 
 .nav-link[aria-current="page"] {
-  background: var(--color-nav-active);
   color: var(--color-ink);
 }
 
@@ -350,6 +382,57 @@
   object-position: center bottom;
 }
 
+.stats-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: end;
+  padding-block: var(--space-lg) var(--space-2xl);
+}
+
+.stats-intro {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.stats-intro h2 {
+  font-size: var(--text-xl);
+  line-height: 1.08;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+  margin: 0;
+}
+
+.stat-item {
+  min-width: 0;
+}
+
+.stat-item dd {
+  margin: 0;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--display-weight);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+}
+
+.stat-item dt {
+  margin-top: var(--space-2xs);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+.stats-status {
+  grid-column: 1 / -1;
+  color: var(--color-muted);
+  font-size: var(--text-xs);
+}
+
 .skills-section,
 .projects-section {
   padding-block: var(--space-3xl);
@@ -359,8 +442,7 @@
   padding-block: var(--space-2xl);
 }
 
-.skills-section,
-.resume-section {
+.skills-section {
   border-top: var(--rule-hair) solid var(--color-rule);
 }
 
@@ -667,6 +749,7 @@
   margin: var(--space-sm) 0 0;
   padding-left: var(--space-md);
   color: var(--color-ink-2);
+  list-style: disc;
 }
 
 .resume-highlights li {
@@ -674,7 +757,7 @@
 }
 
 .resume-highlights li::marker {
-  color: var(--color-rule-2);
+  color: currentColor;
 }
 
 .site-footer {
@@ -720,7 +803,6 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .nav-link:hover,
   .icon-button:hover,
   .menu-button:hover,
   .mobile-nav-link:hover {
@@ -810,6 +892,11 @@
 }
 
 @media (min-width: 60rem) {
+  .stats-section {
+    grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.7fr);
+    gap: var(--space-2xl);
+  }
+
   .skills-grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -818,6 +905,7 @@
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
     gap: var(--space-2xl);
     padding-block: var(--space-xl) var(--space-2xl);
+    transform: translateY(calc(-1 * var(--space-sm)));
   }
 
   .photo-frame {
@@ -831,6 +919,11 @@
 
   .compact-heading {
     grid-template-columns: minmax(0, 0.7fr) minmax(18rem, 1fr);
+  }
+
+  .compact-heading p {
+    justify-self: end;
+    text-align: right;
   }
 
   .about-intro {

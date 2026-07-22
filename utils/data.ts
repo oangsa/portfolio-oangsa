@@ -67,7 +67,7 @@ export const projects: projectsInterface[] = [
 ]
 
 export const about: aboutInterface = {
-  title: 'About me',
+  title: "Profile",
   description: "I am a computer engineering student and full-stack developer with experience modernizing enterprise software, building data-backed web applications, and teaching programming.",
   infos: [
     {
@@ -134,7 +134,7 @@ export const educations: resumeSectionInterface = {
 }
 
 export const activities: resumeSectionInterface = {
-  title: "Teaching & activities",
+  title: "Activities",
   description: "Academic-team work centered on teaching programming, preparing curricula, and supporting hands-on learning.",
   entries: [
     {

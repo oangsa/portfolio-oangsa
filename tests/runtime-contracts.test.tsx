@@ -42,6 +42,20 @@ describe("runtime rendering contracts", () => {
     expect(clientMarkup).toBe(serverMarkup);
   });
 
+  it("renders one shared blurred route indicator for the current navigation item", () => {
+    const markup = renderToString(<Navbar />);
+    const indicators = markup.match(/class="nav-active-indicator"/g) ?? [];
+    const navbarSource = readFileSync("components/navbar.tsx", "utf8");
+    const globalStyles = readFileSync("app/globals.css", "utf8");
+
+    expect(indicators).toHaveLength(1);
+    expect(navbarSource).toContain("duration: reduceMotion ? 0 : 0.25");
+    expect(navbarSource).toContain("ease: [0.25, 1, 0.5, 1]");
+    expect(globalStyles).toContain(".nav-active-indicator");
+    expect(globalStyles).toContain("backdrop-filter: blur(var(--space-sm))");
+    expect(globalStyles).not.toContain(".nav-link::before");
+  });
+
   it("allows the portrait image quality used by next/image", async () => {
     const { default: nextConfig } = await import(pathToFileURL(resolve("next.config.mjs")).href);
 
@@ -63,5 +77,17 @@ describe("runtime rendering contracts", () => {
 
     expect((pageWidth * 16) / screenshotViewportWidth).toBeGreaterThanOrEqual(0.8);
     expect(heroHeightCap).toBeLessThanOrEqual(40);
+  });
+
+  it("keeps GitHub repository and commit stats on the home page", () => {
+    const homePage = readFileSync("app/page.tsx", "utf8");
+    const statsComponent = readFileSync("components/stats.tsx", "utf8");
+
+    expect(homePage).toContain('import Stats from "@/components/stats"');
+    expect(homePage).toContain("<Stats />");
+    expect(statsComponent).toContain("Public repositories");
+    expect(statsComponent).toContain("Authored commits");
+    expect(statsComponent).toContain("function CountUp");
+    expect(statsComponent).toContain("useReducedMotion");
   });
 });

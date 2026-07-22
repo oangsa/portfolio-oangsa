@@ -1,5 +1,5 @@
 /* Hallmark · genre: modern-minimal · tone: soft · macrostructure: Portfolio Grid / Split Studio · design-system: design.md · designed-as-app
- * theme: custom · vibe: "soft, airy, approachable sky-blue" · paper: oklch(97% 0.012 235) · accent: oklch(62% 0.160 235)
+ * theme: custom · vibe: "warm paper and soft charcoal" · paper: oklch(98.4% 0.004 80) · accent: oklch(62% 0.160 235)
  * display: Geist 700 · body: Geist 400 · axes: light / geometric-sans / cool · context: explicit · studied: no
  * nav: N5 Floating Pill · footer: Ft5 Statement · contrast: pass (40–41) · slop: pass (42–45)
  * honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49) · icons: pass (30) · mobile: pass (34, 49, 50–57)
@@ -9,13 +9,13 @@
 :root {
   color-scheme: light;
 
-  --color-paper: oklch(97% 0.012 235);
-  --color-paper-2: oklch(94% 0.016 235);
-  --color-paper-3: oklch(90% 0.022 235);
+  --color-paper: oklch(98.4% 0.004 80);
+  --color-paper-2: oklch(96% 0.006 80);
+  --color-paper-3: oklch(92.5% 0.008 80);
   --color-ink: oklch(22% 0.018 240);
   --color-ink-2: oklch(36% 0.017 240);
-  --color-rule: oklch(82% 0.018 235);
-  --color-rule-2: oklch(72% 0.020 235);
+  --color-rule: oklch(84% 0.006 80);
+  --color-rule-2: oklch(73% 0.006 80);
   --color-muted: oklch(48% 0.015 240);
   --color-neutral: oklch(40% 0.016 240);
   --color-accent: oklch(62% 0.160 235);
@@ -26,11 +26,12 @@
   --color-nav-border: oklch(42% 0 0 / 0.24);
   --color-nav-highlight: oklch(100% 0 0 / 0.88);
   --color-nav-active: oklch(86% 0 0 / 0.82);
+  --color-nav-selection: oklch(80% 0 0 / 0.42);
   --color-nav-focus: oklch(24% 0 0 / 0.85);
   --color-photo-surface: color-mix(in srgb, var(--color-paper) 82%, transparent);
   --color-photo-border: color-mix(in srgb, var(--color-rule-2) 28%, transparent);
   --color-photo-highlight: color-mix(in srgb, var(--color-paper) 90%, transparent);
-  --color-shadow: oklch(22% 0.030 240 / 0.12);
+  --color-shadow: oklch(22% 0.008 260 / 0.12);
 
   --font-display: var(--font-geist), ui-sans-serif, sans-serif;
   --font-body: var(--font-geist), ui-sans-serif, sans-serif;
@@ -83,13 +84,13 @@
 .dark {
   color-scheme: dark;
 
-  --color-paper: oklch(15% 0.014 235);
-  --color-paper-2: oklch(19% 0.017 235);
-  --color-paper-3: oklch(24% 0.020 235);
-  --color-ink: oklch(95% 0.010 235);
-  --color-ink-2: oklch(82% 0.012 235);
-  --color-rule: oklch(32% 0.018 235);
-  --color-rule-2: oklch(42% 0.020 235);
+  --color-paper: oklch(16% 0.004 260);
+  --color-paper-2: oklch(20% 0.005 260);
+  --color-paper-3: oklch(25% 0.006 260);
+  --color-ink: oklch(95% 0.004 80);
+  --color-ink-2: oklch(82% 0.004 80);
+  --color-rule: oklch(32% 0.005 260);
+  --color-rule-2: oklch(42% 0.006 260);
   --color-muted: oklch(70% 0.014 235);
   --color-neutral: oklch(78% 0.014 235);
   --color-accent: oklch(78% 0.125 235);
@@ -100,9 +101,10 @@
   --color-nav-border: oklch(78% 0 0 / 0.22);
   --color-nav-highlight: oklch(100% 0 0 / 0.11);
   --color-nav-active: oklch(30% 0 0 / 0.76);
+  --color-nav-selection: oklch(42% 0 0 / 0.38);
   --color-nav-focus: oklch(96% 0 0 / 0.90);
   --color-photo-surface: color-mix(in srgb, var(--color-paper) 82%, transparent);
   --color-photo-border: color-mix(in srgb, var(--color-rule-2) 32%, transparent);
   --color-photo-highlight: color-mix(in srgb, var(--color-ink) 8%, transparent);
-  --color-shadow: oklch(5% 0.020 240 / 0.30);
+  --color-shadow: oklch(5% 0.004 260 / 0.30);
 }
