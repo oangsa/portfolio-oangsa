@@ -763,7 +763,7 @@
 .site-footer {
   display: grid;
   gap: var(--space-xl);
-  padding-block: var(--space-3xl) var(--space-xl);
+  padding-block: var(--space-2xl) var(--space-xl);
 }
 
 .footer-statement {
@@ -861,7 +861,34 @@
   pointer-events: none;
 }
 
+@media (max-width: 39.999rem) {
+  .home-page .projects-section:last-child {
+    padding-bottom: 0;
+  }
+
+  .about-page {
+    padding-bottom: 0;
+  }
+
+  .about-page .resume-section:last-child {
+    padding-bottom: 0;
+  }
+
+  .site-footer {
+    padding-top: var(--space-xl);
+  }
+}
+
 @media (min-width: 40rem) {
+  .home-page .projects-section:last-child,
+  .about-page .resume-section:last-child {
+    padding-bottom: var(--space-2xl);
+  }
+
+  .about-page {
+    padding-bottom: 0;
+  }
+
   .nav-links {
     display: flex;
   }
