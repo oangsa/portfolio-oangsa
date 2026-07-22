@@ -8,13 +8,14 @@ import { rootMetadata } from "@/utils/seo";
 
 const geist = localFont({
   src: "./fonts/GeistVF.woff",
-  display: "swap",
+  display: "optional",
   variable: "--font-geist",
 });
 
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
-  display: "swap",
+  display: "optional",
+  preload: false,
   variable: "--font-geist-mono",
 });
 
@@ -26,9 +27,9 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
       <body className={`${geist.variable} ${geistMono.variable}`}>
         <Providers>
           <Navbar />
-          {children}
-          <Footer />
         </Providers>
+        {children}
+        <Footer />
       </body>
     </html>
   );

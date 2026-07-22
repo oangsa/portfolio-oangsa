@@ -1,34 +1,43 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { animate, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
 import type { GitHubData } from "@/utils/getGitData";
 
 type LoadState = "loading" | "ready" | "error";
 
 function CountUp({ value }: { value: number | undefined }): JSX.Element {
-  const count = useMotionValue(0);
-  const formattedCount = useTransform(count, (latest) => Math.round(latest).toLocaleString("en-US"));
-  const reduceMotion = useReducedMotion();
+  const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
     if (value === undefined) {
       return;
     }
 
-    if (reduceMotion) {
-      count.set(value);
-      return;
-    }
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const duration = 1_400;
+    const startedAt = performance.now();
+    let animationFrame = 0;
 
-    count.set(0);
-    const controls = animate(count, value, {
-      duration: 1.4,
-      ease: [0.16, 1, 0.3, 1],
-    });
+    const update = (now: number): void => {
+      if (reduceMotion) {
+        setDisplayValue(value);
+        return;
+      }
 
-    return controls.stop;
-  }, [count, reduceMotion, value]);
+      const progress = Math.min((now - startedAt) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+      setDisplayValue(Math.round(value * easedProgress));
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(update);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(update);
+
+    return () => cancelAnimationFrame(animationFrame);
+  }, [value]);
 
   if (value === undefined) {
     return <span>—</span>;
@@ -36,7 +45,7 @@ function CountUp({ value }: { value: number | undefined }): JSX.Element {
 
   return (
     <>
-      <motion.span aria-hidden="true">{formattedCount}</motion.span>
+      <span aria-hidden="true">{displayValue.toLocaleString("en-US")}</span>
       <span className="visually-hidden">{value.toLocaleString("en-US")}</span>
     </>
   );

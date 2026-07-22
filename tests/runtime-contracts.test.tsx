@@ -47,17 +47,17 @@ describe("runtime rendering contracts", () => {
     expect(clientMarkup).toBe(serverMarkup);
   });
 
-  it("renders one shared blurred route indicator for the current navigation item", () => {
+  it("renders one lightweight blurred route indicator for the current navigation item", () => {
     const markup = renderToString(<Navbar />);
     const indicators = markup.match(/class="nav-active-indicator"/g) ?? [];
     const navbarSource = readFileSync("components/navbar.tsx", "utf8");
     const globalStyles = readFileSync("app/globals.css", "utf8");
 
     expect(indicators).toHaveLength(1);
-    expect(navbarSource).toContain("duration: reduceMotion ? 0 : 0.25");
-    expect(navbarSource).toContain("ease: [0.25, 1, 0.5, 1]");
+    expect(navbarSource).not.toContain("framer-motion");
     expect(globalStyles).toContain(".nav-active-indicator");
     expect(globalStyles).toContain("backdrop-filter: blur(var(--space-sm))");
+    expect(globalStyles).toContain("animation: nav-indicator-enter");
     expect(globalStyles).not.toContain(".nav-link::before");
   });
 
@@ -93,7 +93,22 @@ describe("runtime rendering contracts", () => {
     expect(statsComponent).toContain("Public repositories");
     expect(statsComponent).toContain("Authored commits");
     expect(statsComponent).toContain("function CountUp");
-    expect(statsComponent).toContain("useReducedMotion");
+    expect(statsComponent).toContain("requestAnimationFrame");
+    expect(statsComponent).toContain("prefers-reduced-motion: reduce");
+    expect(statsComponent).not.toContain("framer-motion");
+  });
+
+  it("keeps critical paint independent of animation code and slow font swaps", () => {
+    const rootLayout = readFileSync("app/layout.tsx", "utf8");
+    const photoSource = readFileSync("components/photo.tsx", "utf8");
+    const globalStyles = readFileSync("app/globals.css", "utf8");
+
+    expect(rootLayout).toContain('display: "optional"');
+    expect(rootLayout).toContain("preload: false");
+    expect(photoSource).not.toContain('"use client"');
+    expect(photoSource).not.toContain("framer-motion");
+    expect(globalStyles).toContain("animation: photo-settle");
+    expect(globalStyles).toContain("animation: none !important");
   });
 
   it("publishes concise repository-backed architecture without the removed sections", async () => {
