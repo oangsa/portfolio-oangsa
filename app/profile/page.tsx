@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
+import JsonLd from "@/components/jsonLd";
 import type { resumeSectionInterface } from "@/interfaces/interfaces";
 import { about, activities, educations, experiences } from "@/utils/data";
+import { profileJsonLd, profileMetadata } from "@/utils/seo";
+
+export const metadata: Metadata = profileMetadata;
 
 function ResumeSection({ section, id }: { section: resumeSectionInterface; id: string }): JSX.Element {
   return (
@@ -32,6 +37,7 @@ function ResumeSection({ section, id }: { section: resumeSectionInterface; id: s
 export default function ProfilePage(): JSX.Element {
   return (
     <main className="site-main about-page shell">
+      <JsonLd data={profileJsonLd} />
       <section aria-labelledby="profile-heading" className="about-intro">
         <div className="about-copy">
           <p className="hero-role">About</p>

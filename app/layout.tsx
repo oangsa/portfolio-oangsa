@@ -4,6 +4,7 @@ import "./globals.css";
 import {Providers} from "./providers/providers";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { rootMetadata } from "@/utils/seo";
 
 const geist = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,10 +18,7 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
 });
 
-export const metadata: Metadata = {
-  title: "Suthang Sukrueangkun — Full-Stack Developer & Computer Engineering Student",
-  description: "Portfolio of Suthang Sukrueangkun, a full-stack developer and computer engineering student experienced with .NET, React, Next.js, and data-backed applications.",
-};
+export const metadata: Metadata = rootMetadata;
 
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode;}>) {
   return (

@@ -3,10 +3,13 @@ import ProjectsGrid from "@/components/projectsGrid";
 import Skills from "@/components/skills";
 import Socials from "@/components/socials";
 import Stats from "@/components/stats";
+import JsonLd from "@/components/jsonLd";
+import { homeJsonLd } from "@/utils/seo";
 
 export default function Home(): JSX.Element {
   return (
     <main className="site-main home-page">
+      <JsonLd data={homeJsonLd} />
       <section className="home-hero shell" aria-labelledby="intro-heading">
         <div className="hero-copy">
           <p className="hero-role">Computer Engineering Student · Full-Stack Developer</p>
