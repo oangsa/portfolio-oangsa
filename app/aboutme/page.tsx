@@ -1,38 +1,59 @@
-import { about, educations } from "@/utils/data";
+import type { resumeSectionInterface } from "@/interfaces/interfaces";
+import { about, activities, educations, experiences } from "@/utils/data";
+
+function ResumeSection({ section, id }: { section: resumeSectionInterface; id: string }): JSX.Element {
+  return (
+    <section aria-labelledby={`${id}-heading`} className="resume-section">
+      <div className="section-heading resume-heading">
+        <h2 id={`${id}-heading`}>{section.title}</h2>
+      </div>
+
+      <ol className="resume-list">
+        {section.entries.map((entry) => (
+          <li className="resume-entry" key={`${entry.organization}-${entry.duration}`}>
+            <p className="resume-date">{entry.duration}</p>
+            <div className="resume-content">
+              <p className="resume-organization">{entry.organization}</p>
+              <h3>{entry.title}</h3>
+              {entry.context ? <p className="resume-context">{entry.context}</p> : null}
+              {entry.highlights?.length === 1 ? <p className="resume-summary">{entry.highlights[0]}</p> : null}
+              {entry.highlights && entry.highlights.length > 1 ? (
+                <ul className="resume-highlights">
+                  {entry.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                </ul>
+              ) : null}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
 
 export default function AboutPage(): JSX.Element {
   return (
-    <main className="container mx-auto py-12 xl:py-16">
-      <section aria-labelledby="about-heading" className="max-w-3xl">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-dark_accent dark:text-accent">About me</p>
-        <h1 id="about-heading" className="text-4xl font-bold xl:text-5xl">{about.title}</h1>
-        <p className="mt-6 max-w-2xl leading-7 text-black/70 dark:text-white/70">{about.description}</p>
+    <main className="site-main about-page shell">
+      <section aria-labelledby="about-heading" className="about-intro">
+        <div className="about-copy">
+          <p className="hero-role">Profile</p>
+          <h1 id="about-heading">{about.title}</h1>
+          <p>{about.description}</p>
+          <a className="primary-cta" href="mailto:sukruangkul.aongsa@gmail.com">Start a conversation</a>
+        </div>
 
-        <dl className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-black/10 bg-black/10 sm:grid-cols-2 dark:border-white/10 dark:bg-white/10">
+        <dl className="profile-facts">
           {about.infos.map((item) => (
-            <div key={item.fieldName} className="bg-[#f0f0f5] p-5 dark:bg-[#232329]">
-              <dt className="text-sm text-black/55 dark:text-white/55">{item.fieldName}</dt>
-              <dd className="mt-1 break-words font-medium">{item.fieldValue}</dd>
+            <div key={item.fieldName}>
+              <dt>{item.fieldName}</dt>
+              <dd>{item.fieldValue}</dd>
             </div>
           ))}
         </dl>
       </section>
 
-      <section aria-labelledby="education-heading" className="mt-20">
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-dark_accent dark:text-accent">Education</p>
-        <h2 id="education-heading" className="text-4xl font-bold">{educations.title}</h2>
-        <p className="mt-4 max-w-2xl leading-7 text-black/70 dark:text-white/70">{educations.description}</p>
-
-        <ol className="mt-10 grid grid-cols-1 gap-5 lg:grid-cols-2">
-          {educations.infos.map((item) => (
-            <li key={`${item.institution}-${item.duration}`} className="rounded-2xl border border-black/10 bg-white/60 p-6 dark:border-white/10 dark:bg-white/5">
-              <p className="font-bold text-dark_accent dark:text-accent">{item.duration}</p>
-              <h3 className="mt-4 text-xl font-semibold">{item.degree}</h3>
-              <p className="mt-3 text-sm leading-6 text-black/65 dark:text-white/65">{item.institution}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
+      <ResumeSection section={experiences} id="experience" />
+      <ResumeSection section={educations} id="education" />
+      <ResumeSection section={activities} id="activities" />
     </main>
   );
 }

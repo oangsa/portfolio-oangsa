@@ -1,20 +1,26 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import photo from "../assets/cropped_image.png"
+import photo from "../assets/cropped_image.png";
 
-export default function Photo () {
+export default function Photo(): JSX.Element {
+  const reduceMotion = useReducedMotion();
 
-    return (
-        <div className="w-full h-full relative">
-            <motion.div initial={{opacity: 0}} animate={{opacity: 1, transition: {delay: 0.5, duration: 0.4, ease: "easeIn"}}}>
-                <motion.div initial={{opacity: 0}} animate={{opacity: 1, transition: {delay: 1, duration: 0.4, ease: 'easeInOut'}}} className="w-[298px] h-[298px] xl:w-[498px] xl:h-[498px]">
-                    <Image src={photo} priority quality={90} fill sizes="(min-width: 1280px) 498px, 298px" alt="Portrait of Suthang Sukrueangkun" className="object-contain"/>
-                </motion.div>
-            </motion.div>
-        </div>
-    )
-
-
+  return (
+    <motion.figure
+      className="photo-frame"
+      initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: reduceMotion ? 0.15 : 0.42, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <Image
+        src={photo}
+        priority
+        quality={90}
+        sizes="(min-width: 960px) 38vw, 86vw"
+        alt="Portrait of Suthang Sukrueangkun"
+      />
+    </motion.figure>
+  );
 }

@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "15px"
+      padding: "var(--page-gutter)"
     },
     screens: {
       sm: '640px',
@@ -17,23 +17,7 @@ const config: Config = {
       lg: '960px',
       xl: '1200px',
     },
-    extend: {
-      colors: {
-        accent: {
-          DEFAULT: '#00ff99',
-          hover: '#00e187',
-        },
-
-        accent_hover: {
-          DEFAULT: '#00e187'
-        },
-        
-        dark_accent: {
-          DEFAULT: '#04754d',
-          hover: '#00e187',
-        }
-      }
-    }
+    extend: {}
   },
   darkMode: "class",
   plugins: [],

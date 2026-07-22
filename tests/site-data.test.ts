@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { projects } from "@/utils/data";
+import { activities, educations, experiences, projects } from "@/utils/data";
 import { navigation, socialLinks } from "@/utils/site";
 
 describe("navigation", () => {
@@ -25,7 +25,30 @@ describe("public portfolio data", () => {
   it("uses valid project statuses and secure public links", () => {
     for (const project of projects) {
       expect(["Completed", "In progress"]).toContain(project.status);
-      if (project.href) expect(project.href).toMatch(/^https:\/\//);
+
+      for (const link of project.links ?? []) {
+        expect(link.href).toMatch(/^https:\/\//);
+        expect(link.label.length).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("keeps résumé sections complete and suitable for public display", () => {
+    expect(experiences.entries).toHaveLength(2);
+    expect(educations.entries[0]?.highlights).toContain("GPA: 3.30/4.0");
+    expect(activities.entries).toHaveLength(3);
+
+    for (const section of [experiences, educations, activities]) {
+      for (const entry of section.entries) {
+        expect(entry.title.length).toBeGreaterThan(0);
+        expect(entry.organization.length).toBeGreaterThan(0);
+        expect(entry.duration.length).toBeGreaterThan(0);
+        expect(entry.highlights?.length).toBeGreaterThan(0);
+      }
+    }
+
+    for (const entry of experiences.entries) {
+      expect(entry.highlights).toHaveLength(3);
     }
   });
 

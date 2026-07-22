@@ -1,43 +1,43 @@
-import { ReactElement } from "react";
-import { ImHtmlFive2 } from "react-icons/im";
-import { IoLogoJavascript } from "react-icons/io";
-import { TbBrandTypescript } from "react-icons/tb";
-import { TbBrandNextjs } from "react-icons/tb";
-import { IoLogoNodejs } from "react-icons/io";
-import { TbBrandPrisma } from "react-icons/tb";
-import { TbBrandMongodb } from "react-icons/tb";
-import { IoLogoPython } from "react-icons/io";
+import type { IconType } from "react-icons";
+import {
+  SiDocker,
+  SiDotnet,
+  SiGit,
+  SiMicrosoftsqlserver,
+  SiMongodb,
+  SiNextdotjs,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiSharp,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
 
-interface SkillsProps {
-    containerStyle?: string;
-    iconStyle?: string;
-}
+const skills: Array<{ name: string; icon: IconType }> = [
+  { name: "TypeScript", icon: SiTypescript },
+  { name: "C#", icon: SiSharp },
+  { name: "Python", icon: SiPython },
+  { name: "React", icon: SiReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: ".NET", icon: SiDotnet },
+  { name: "PostgreSQL", icon: SiPostgresql },
+  { name: "SQL Server", icon: SiMicrosoftsqlserver },
+  { name: "MongoDB", icon: SiMongodb },
+  { name: "Docker", icon: SiDocker },
+  { name: "Git", icon: SiGit },
+  { name: "Tailwind CSS", icon: SiTailwindcss },
+];
 
-export default function Skills ({containerStyle, iconStyle}: SkillsProps): JSX.Element {
-
-    const skills: Array<{icon: ReactElement, name: string}> = [
-        {icon: <ImHtmlFive2 size="1.25rem"/>, name: "HTML"},
-        {icon: <IoLogoJavascript size="1.25rem"/>, name: "JavaScript"},
-        {icon: <TbBrandTypescript size="1.25rem"/>, name: "TypeScript"},
-        {icon: <IoLogoPython size="1.25rem"/>, name: "Python"},
-        {icon: <IoLogoNodejs size="1.25rem"/>, name: "Node.js"},
-        {icon: <TbBrandNextjs size="1.25rem"/>, name: "Next.js"},
-        {icon: <TbBrandPrisma size="1.25rem"/>, name: "Prisma"},
-        {icon: <TbBrandMongodb size="1.25rem"/>, name: "MongoDB"}
-    ]
-
-    return (
-        <div className={containerStyle}>
-            {skills.map((item) => {
-                return (
-                <div key={item.name} className="hover:dark:text-accent hover:text-dark_accent hover:text-xl flex place-items-center gap-3 transition-all">
-                    <div className={iconStyle} aria-hidden="true">
-                        {item.icon}
-                    </div>
-                    {item.name}
-                </div>
-                )
-            })}
-        </div>
-    );
+export default function Skills(): JSX.Element {
+  return (
+    <ul className="skills-grid" aria-label="Core technologies">
+      {skills.map(({ name, icon: Icon }) => (
+        <li key={name}>
+          <Icon aria-hidden="true" />
+          <span>{name}</span>
+        </li>
+      ))}
+    </ul>
+  );
 }

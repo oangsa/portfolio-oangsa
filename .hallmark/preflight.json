@@ -1,0 +1,10 @@
+{
+  "date": "2026-07-22",
+  "font_stack": "Geist Mono active through next/font/local; Geist Sans bundled but previously unused",
+  "palette": "Light gray and dark charcoal surfaces with green Tailwind accent values",
+  "motion": "Motion-on: framer-motion is installed and used by the portrait",
+  "spacing": "Tailwind defaults with a 15px container inset; no named CSS spacing tokens",
+  "framework": "Next.js 16 App Router, React 18, TypeScript, Tailwind CSS 3",
+  "preserve": ["local font files", "theme switching", "existing content", "real portrait and project imagery"],
+  "override": ["palette", "spacing system", "page macrostructure", "component voice"]
+}

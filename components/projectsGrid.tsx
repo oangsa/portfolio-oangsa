@@ -3,7 +3,7 @@ import { projects } from "@/utils/data";
 
 export default function ProjectsGrid(): JSX.Element {
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <div className="projects-grid">
       {projects.map((project) => (
         <ProjectsCard key={project.name} project={project} />
       ))}

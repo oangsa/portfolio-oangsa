@@ -3,10 +3,14 @@ import type { StaticImageData } from "next/image";
 export interface projectsInterface {
     name: string,
     subject: string,
-    image: StaticImageData,
+    image?: StaticImageData,
     description: string,
     status: "Completed" | "In progress",
-    href?: string,
+    tools?: string[],
+    links?: Array<{
+        label: string,
+        href: string,
+    }>,
 }
 
 export interface baseInterface {
@@ -19,16 +23,18 @@ interface infoStruct {
     fieldValue: string
 }
 
-interface educationStruct {
-    institution: string,
-    degree: string,
-    duration: string
-}
-
 export interface aboutInterface extends baseInterface {
     infos: Array<infoStruct>
 }
 
-export interface educationInterface extends baseInterface {
-    infos: Array<educationStruct>
+export interface resumeEntryInterface {
+    title: string,
+    organization: string,
+    duration: string,
+    context?: string,
+    highlights?: string[],
+}
+
+export interface resumeSectionInterface extends baseInterface {
+    entries: resumeEntryInterface[]
 }
