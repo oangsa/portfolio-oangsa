@@ -1,10 +1,21 @@
 {
   "date": "2026-07-22",
-  "font_stack": "Geist Mono active through next/font/local; Geist Sans bundled but previously unused",
-  "palette": "Light gray and dark charcoal surfaces with green Tailwind accent values",
-  "motion": "Motion-on: framer-motion is installed and used by the portrait",
-  "spacing": "Tailwind defaults with a 15px container inset; no named CSS spacing tokens",
+  "font_stack": "Geist and Geist Mono through next/font/local in app/layout.tsx",
+  "palette": "Locked OKLCH custom properties in tokens.css with warm paper, soft charcoal ink, and a sky-blue signal accent",
+  "motion": "Motion-cut: no animation library; CSS portrait settle, linked-image scale, and requestAnimationFrame GitHub count-up only",
+  "spacing": "Named 4-point CSS spacing tokens in tokens.css; Tailwind container consumes --page-gutter",
   "framework": "Next.js 16 App Router, React 18, TypeScript, Tailwind CSS 3",
-  "preserve": ["local font files", "theme switching", "existing content", "real portrait and project imagery"],
-  "override": ["palette", "spacing system", "page macrostructure", "component voice"]
+  "preserve": [
+    "local Geist font files",
+    "theme switching",
+    "existing content and routes",
+    "real portrait and project imagery",
+    "live GitHub statistics"
+  ],
+  "introduce": [
+    "main-branch body composition",
+    "retained edge-aligned navigation",
+    "retained inline footer",
+    "clear separation between body and chrome"
+  ]
 }

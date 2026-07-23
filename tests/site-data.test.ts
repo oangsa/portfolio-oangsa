@@ -1,6 +1,12 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import {
+  getLoopedPageIndex,
+  paginateItems,
+  PROJECTS_AUTO_ADVANCE_MS,
+  PROJECTS_PER_PAGE,
+} from "@/components/projectsCarousel";
 import { activities, caseStudyProjects, educations, experiences, projects } from "@/utils/data";
 import { navigation, socialLinks } from "@/utils/site";
 
@@ -22,6 +28,31 @@ describe("navigation", () => {
 });
 
 describe("public portfolio data", () => {
+  it("paginates projects two at a time without changing their order", () => {
+    const currentPages = paginateItems(projects);
+    const futureProjects = Array.from({ length: 20 }, (_, index) => index + 1);
+    const futurePages = paginateItems(futureProjects);
+
+    expect(PROJECTS_PER_PAGE).toBe(2);
+    expect(currentPages).toHaveLength(Math.ceil(projects.length / PROJECTS_PER_PAGE));
+    expect(currentPages.every((page) => page.length <= PROJECTS_PER_PAGE)).toBe(true);
+    expect(currentPages.flat()).toEqual(projects);
+    expect(futurePages).toHaveLength(10);
+    expect(futurePages.every((page) => page.length === PROJECTS_PER_PAGE)).toBe(true);
+    expect(futurePages.flat()).toEqual(futureProjects);
+    expect(() => paginateItems(projects, 0)).toThrow(RangeError);
+  });
+
+  it("loops project pages in both directions on a five-second cadence", () => {
+    expect(PROJECTS_AUTO_ADVANCE_MS).toBe(5_000);
+    expect(PROJECTS_AUTO_ADVANCE_MS).toBeGreaterThanOrEqual(3_000);
+    expect(PROJECTS_AUTO_ADVANCE_MS).toBeLessThanOrEqual(6_000);
+    expect(getLoopedPageIndex(0, -1, 5)).toBe(4);
+    expect(getLoopedPageIndex(4, 1, 5)).toBe(0);
+    expect(getLoopedPageIndex(2, 1, 5)).toBe(3);
+    expect(() => getLoopedPageIndex(0, 1, 0)).toThrow(RangeError);
+  });
+
   it("uses valid project statuses and secure public links", () => {
     for (const project of projects) {
       expect(["Completed", "In progress"]).toContain(project.status);

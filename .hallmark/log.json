@@ -2,6 +2,42 @@
   {
     "date": "2026-07-22",
     "scope": "app",
+    "macrostructure": "Portfolio Grid / Split Studio / Long Document",
+    "theme": "custom",
+    "theme_axes": "light / geometric-sans / cool",
+    "vibe": "main body, quiet edge-aligned chrome",
+    "nav": "N9 Edge-Aligned Minimal (preserved)",
+    "footer": "Ft2 Inline (preserved)",
+    "enrichment": "existing portrait and project imagery",
+    "brief": "Suthang portfolio · combine main body with the preferred current navbar and footer"
+  },
+  {
+    "date": "2026-07-22",
+    "scope": "home project index",
+    "macrostructure": "Portfolio Grid",
+    "theme": "custom",
+    "theme_axes": "light / geometric-sans / cool",
+    "vibe": "warm paper, quiet two-column shortlist",
+    "nav": "N9 Edge-Aligned Minimal (preserved)",
+    "footer": "Ft2 Inline",
+    "enrichment": "existing project imagery only",
+    "brief": "Suthang portfolio · restore the four-project rhythm and reduce homepage choice"
+  },
+  {
+    "date": "2026-07-22",
+    "scope": "app",
+    "macrostructure": "Portfolio Grid / Split Studio / Long Document",
+    "theme": "custom",
+    "theme_axes": "light / geometric-sans / cool",
+    "vibe": "warm paper, airy edges, sky-blue signal",
+    "nav": "N9 Edge-Aligned Minimal",
+    "footer": "Ft2 Inline",
+    "enrichment": "existing portrait and project imagery only",
+    "brief": "Suthang portfolio · minimal edge-aligned refinement from Thai feedback"
+  },
+  {
+    "date": "2026-07-22",
+    "scope": "app",
     "macrostructure": "Portfolio Grid / Split Studio",
     "theme": "custom",
     "theme_axes": "light / geometric-sans / cool",

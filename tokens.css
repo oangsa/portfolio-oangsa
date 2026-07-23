@@ -1,10 +1,10 @@
-/* Hallmark · genre: modern-minimal · tone: soft · macrostructure: Portfolio Grid / Split Studio / Long Document · design-system: design.md · designed-as-app
+/* Hallmark · genre: modern-minimal · tone: soft body, austere chrome · macrostructure: Portfolio Grid / Split Studio / Long Document · design-system: design.md · designed-as-app
  * theme: custom · vibe: "warm paper and soft charcoal" · paper: oklch(98.4% 0.004 80) · accent: oklch(62% 0.160 235)
  * display: Geist 700 · body: Geist 400 · axes: light / geometric-sans / cool · context: explicit · studied: no
- * nav: N5 Floating Pill · footer: Ft5 Statement · contrast: pass (40–41) · slop: pass (42–45)
+ * nav: N9 Edge-Aligned Minimal · footer: Ft2 Inline · contrast: pass (40–41) · slop: pass (58/58)
  * honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49) · icons: pass (30) · mobile: pass (34, 49, 50–57)
  */
-/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V4 */
+/* Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 */
 
 :root {
   color-scheme: light;
@@ -65,6 +65,7 @@
 
   --page-gutter: clamp(1rem, 4vw, 3rem);
   --page-width: 92rem;
+  --banner-height: 5rem;
   --measure: 65ch;
   --rule-hair: 1px;
   --rule-fine: 2px;
@@ -79,6 +80,16 @@
   --dur-micro: 120ms;
   --dur-short: 220ms;
   --dur-long: 420ms;
+  --dur-carousel: 720ms;
+
+  --z-base: 1;
+  --z-raised: 10;
+  --z-sticky: 20;
+  --z-sticky-nav: 30;
+  --z-dropdown: 100;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
 }
 
 .dark {

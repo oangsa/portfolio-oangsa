@@ -3,50 +3,31 @@
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import { useState } from "react";
 import { MoonIcon } from "./Icons/moon";
 import { SunIcon } from "./Icons/sun";
-import { navigation } from "@/utils/site";
 
 export default function Navbar(): JSX.Element {
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const isDark = resolvedTheme === "dark";
   const nextTheme = isDark ? "light" : "dark";
+  const routeDestination = pathname === "/profile"
+    ? { href: "/", label: "Work" }
+    : { href: "/profile", label: "Profile" };
 
   return (
     <header className="site-header">
-      <nav className="nav-pill" aria-label="Primary navigation">
-        <NextLink href="/" className="wordmark" onClick={() => setIsMenuOpen(false)}>
+      <nav className="nav-edge shell" aria-label="Primary navigation">
+        <NextLink
+          href="/"
+          className="wordmark"
+          aria-current={pathname === "/" ? "page" : undefined}
+        >
           Suthang<span aria-hidden="true">.</span>
         </NextLink>
 
-        <div className="nav-links">
-          {navigation.map(({ href, label }) => {
-            const isCurrent = pathname === href;
-
-            return (
-              <NextLink
-                key={href}
-                href={href}
-                aria-current={isCurrent ? "page" : undefined}
-                className="nav-link"
-              >
-                {isCurrent ? (
-                  <span
-                    className="nav-active-indicator"
-                    aria-hidden="true"
-                  />
-                ) : null}
-                <span className="nav-link-label">{label}</span>
-              </NextLink>
-            );
-          })}
-        </div>
-
-        <div className="nav-actions">
+        <div className="nav-edge-actions">
           <button
             type="button"
             onClick={() => setTheme(nextTheme)}
@@ -56,40 +37,14 @@ export default function Navbar(): JSX.Element {
             <MoonIcon className="theme-icon-light" />
             <SunIcon className="theme-icon-dark" />
           </button>
-          <button
-            type="button"
-            className="menu-button"
-            aria-controls="mobile-navigation"
-            aria-expanded={isMenuOpen}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setIsMenuOpen((open) => !open)}
+          <NextLink
+            href={routeDestination.href}
+            className="nav-route-link"
           >
-            <span aria-hidden="true">{isMenuOpen ? "Close" : "Menu"}</span>
-          </button>
+            {routeDestination.label}<span aria-hidden="true">→</span>
+          </NextLink>
         </div>
       </nav>
-
-      {isMenuOpen && (
-        <nav id="mobile-navigation" aria-label="Mobile navigation" className="mobile-navigation">
-          <div>
-            {navigation.map(({ href, label }) => {
-              const isCurrent = pathname === href;
-
-              return (
-                <NextLink
-                  key={href}
-                  href={href}
-                  onClick={() => setIsMenuOpen(false)}
-                  aria-current={isCurrent ? "page" : undefined}
-                  className="mobile-nav-link"
-                >
-                  {label}
-                </NextLink>
-              );
-            })}
-          </div>
-        </nav>
-      )}
     </header>
   );
 }
